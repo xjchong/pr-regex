@@ -1,0 +1,26 @@
+name: 'PR Regex Action'
+description: 'Add or replace content in a pull request description based on some regex.'
+inputs:
+  content:
+    description: Content to be added to the PR description,
+    required: true
+  regex:
+    description: Regex to match against the PR description.
+    required: true
+  regexFlags:
+    description: Flags to use with the regex.
+    required: false
+  noMatchStrategy:
+    description: Strategy to use if no match is found.
+    required: false
+    default: 'skip'
+    options:
+      - skip
+      - prepend
+      - append
+  githubToken:
+    description: GitHub access token.
+    required: true
+runs:
+  using: node20
+  main: dist/index.js
